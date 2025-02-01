@@ -1,13 +1,23 @@
-const srvname = document.querySelector('#srv-name');
-
+const serverName = document.querySelector('#serverName');
+const progressBar = document.querySelector('.progress');
+const mapName = document.querySelector('#mapName');
+const playerCount = document.querySelector('#playerCount');
 
 window.onload = function() {
-    srvname.textContent = "test"
+    serverName.textContent = "";
+    mapName.textContent = "";
+    playerCount.textContent = "";
     
+
     
-    let progress = 0;
-    const progressBar = document.querySelector('.progress');
 };
+if (typeof game_details !== "undefined") { 
+    game_details.forEach(element => {
+        i = document.createElement("p");
+        i.textContent = game_details;
+    });
+}
+
 
 
 document.getElementById("music").volume = 0.2;
