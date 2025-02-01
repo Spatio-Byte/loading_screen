@@ -2,7 +2,7 @@ const srvname = document.querySelector('#srv-name');
 
 
 window.onload = function() {
-    srvname.textContent = ""
+    srvname.textContent = "test"
     
     
     let progress = 0;
