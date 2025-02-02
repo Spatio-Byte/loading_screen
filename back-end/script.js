@@ -13,9 +13,8 @@ function GameDetails ( servername, serverurl, mapname, maxplayers, steamid, game
 function setProgress(percent) {
     percent = Math.max(1, Math.min(100, percent));
 
-    let progressBar = document.getElementsByClassName("progress-bar");
-    let progressText = document.getElementsByClassName("progress-text");
-
+    let progressBar = document.querySelector('.progress-bar')
+    let progressText = document.querySelector('.progress-text')
     if (progressBar) {
         progressBar.style.width = percent + "%";
     }
