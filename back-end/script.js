@@ -9,7 +9,7 @@ function GameDetails ( servername, serverurl, mapname, maxplayers, steamid, game
     serverName.textContent = `${servername}`;
     mapName.textContent = `actuellement sur : ${mapname}`;
     playerCount.textContent = `nombre de joueur max : ${maxplayers}`;
-    gameMODE.textContent = `gamemode : ${gamemode}`
+    gameMODE.textContent = `gamemode : ${gamemode}`;
 };
 
 function SetStatusChanged (status) {
