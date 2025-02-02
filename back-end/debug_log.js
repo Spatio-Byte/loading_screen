@@ -14,3 +14,9 @@ for (let key in window) {
 }
 console.log("📋 Liste des variables globales :");
 console.log(Object.keys(window));
+console.log("📋 Liste des fonctions globales :");
+for (let key in window) {
+    if (typeof window[key] === "function") {
+        console.log("🔹 Fonction détectée :", key);
+    }
+}
