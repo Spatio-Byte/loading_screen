@@ -2,16 +2,13 @@ const serverName = document.querySelector('#serverName');
 const progressBar = document.querySelector('.progress');
 const mapName = document.querySelector('#mapName');
 const playerCount = document.querySelector('#playerCount');
-
+const gameMODE = document.querySelector('#gameMODE')
 
 function GameDetails ( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
     serverName.textContent = `${servername}`;
     mapName.textContent = `actuellement sur : ${mapname}, en ${gamemode}`;
     playerCount.textContent = `nombre de joueur max : ${maxplayers}`;
-<<<<<<< HEAD
     gameMODE.textContent = `gamemode : ${gamemode}`
-=======
->>>>>>> 90f72a00e794a173c9d37e7d8d9aecaf7181a20f
 };
 
 function SetStatusChanged (status) {
