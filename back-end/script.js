@@ -19,7 +19,10 @@ window.onload = function() {
     }
 };
 
+GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
+    serverName.textContent = `Nom du serveur : ${servername}`;
 
+}
 
 
 document.getElementById("music").volume = 0.2;
