@@ -1,7 +1,8 @@
 const serverName = document.querySelector('#serverName');
-const progressBar = document.querySelector('.progress');
 const mapName = document.querySelector('#mapName');
 const playerCount = document.querySelector('#playerCount');
+let mountingaddons = false;
+
 
 function GameDetails ( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
     serverName.textContent = `${servername}`;
@@ -9,37 +10,52 @@ function GameDetails ( servername, serverurl, mapname, maxplayers, steamid, game
     playerCount.textContent = `nombre de joueur max : ${maxplayers}`;
 };
 
-function SetStatusChanged (status) {
-    console.log("🔄 Nouveau statut de connexion :", status);
-    
-    
-    const steps = [
-        "Starting Lua...",
-        "Downloading resources...",
-        "Mounting addons...",
-        "Sending client info...",
-        "Finalizing..."
-    ];
-    
-    
-    let progress = (steps.indexOf(status) + 1) / steps.length * 100;
-    
-    
-    if (progress === 0 && status !== steps[0]) {
-        console.warn("⚠️ Statut inconnu :", status);
-        return;
-    }
+function setProgress(percent) {
+    percent = Math.max(1, Math.min(100, percent));
 
-    // Mise à jour de la barre de chargement
-    let progressBar = document.getElementById("progress-bar");
-    let progressText = document.getElementById("progress-text");
+    let progressBar = document.getElementsByClassName("progress-bar");
+    let progressText = document.getElementsByClassName("progress-text");
 
     if (progressBar) {
-        progressBar.style.width = progress + "%";
+        progressBar.style.width = percent + "%";
     }
     if (progressText) {
-        progressText.innerText = status;
+        progressText.innerText = `Chargement : ${percent}%`;
     }
-};
 
+    console.log(`🔄 Progression mise à jour : ${percent}%`);
+}
+
+function SetStatusChanged( status ) {
+    if(status == "Mounting Addons"){
+      mountingaddons = true;
+    }
+    if(status == "Mounting Addons"){
+      mountingaddons = true;
+      setProgress(50);
+    }
+    if(status == "Workshop Complete"){
+      mountingaddons = true;
+      setProgress(50);
+    }
+    if(status == "Client info sent!"){
+      mountingaddons = true;
+      setProgress(92);
+    }
+    if(status == "Starting Lua..."){
+      mountingaddons = true;
+      setProgress(99);
+    }
+    if(status.indexOf("/") !== -1){
+        var statusarray = status.split("/");
+        downloadedFiles = statusarray[0];
+        neededFiles = statusarray[1].split(" ")[0];
+        var offset = 20;
+        if(mountingaddons == true){
+            offset = 50;
+        }
+        var percent = ((downloadedFiles / neededFiles) * 100) / 3;
+        setProgress(offset+percent);
+    }
+}; 
 document.getElementById("music").volume = 0.2;
