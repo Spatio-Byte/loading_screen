@@ -19,9 +19,8 @@ window.onload = function() {
     }
 };
 
-window.GameDetails = function( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
+function GameDetails ( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
     serverName.textContent = `Nom du serveur : ${servername}`;
-
 };
 
 
