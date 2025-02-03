@@ -10,18 +10,23 @@ function GameDetails ( servername, serverurl, mapname, maxplayers, steamid, game
     playerCount.textContent = `nombre de joueur max : ${maxplayers}`;
 };
 
-function setProgress(percent) {
+function setProgress(percent , statusC, files) {
     percent = Math.max(1, Math.min(100, percent));
 
     let progressBar = document.querySelector('.progress');
     let progressText = document.querySelector('.progress-text');
+    let progressStatus = document.querySelector('.progress-status');
     if (progressBar) {
-        progressBar.style.width = percent + "%";
+      progressBar.style.width = percent + "%";
     }
     if (progressText) {
-        progressText.innerText = `Chargement : ${percent}%`;
+      progressText.innerText = `Chargement : ${percent}%`;
     }
-
+    if (files) {
+      progressStatus.innerText = `téléchargement : ${files}`;
+    } else {
+      progressStatus.innerText = "";
+    }
     console.log(`🔄 Progression mise à jour : ${percent}%`);
 }
 
@@ -31,19 +36,19 @@ function SetStatusChanged( status ) {
     }
     if(status == "Mounting Addons"){
       mountingaddons = true;
-      setProgress(50);
+      setProgress(50, status);
     }
     if(status == "Workshop Complete"){
       mountingaddons = true;
-      setProgress(50);
+      setProgress(50, status);
     }
     if(status == "Client info sent!"){
       mountingaddons = true;
-      setProgress(92);
+      setProgress(92, status);
     }
     if(status == "Starting Lua..."){
       mountingaddons = true;
-      setProgress(99);
+      setProgress(99, status);
     }
     if(status.indexOf("/") !== -1){
         var statusarray = status.split("/");
@@ -54,7 +59,7 @@ function SetStatusChanged( status ) {
             offset = 50;
         }
         var percent = ((downloadedFiles / neededFiles) * 100) / 3;
-        setProgress(offset+percent);
+        setProgress(offset+percent, status, downloadedFiles);
     }
 }; 
 document.getElementById("music").volume = 0.2;
