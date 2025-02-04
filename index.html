@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="page/style.css">
 </head>
 <body>
-    <video autoplay loop muted playsinline id="background-video">
-        <source src="sound_stuff/phasm.mp4" type="video/mp4">
-        Votre navigateur ne supporte pas la vidéo en arrière-plan.
-    </video>
+    
     
     <div class="loading-container">
         <h1 id="serverName">Chargement...</h1>
@@ -32,6 +29,34 @@
     </audio>
     <script src="back-end/script.js"></script>
     <script src="back-end/debug_log.js"></script>
-    
+    <script>
+        console.log("🔄 Ajout de la vidéo d'arrière-plan...");
+
+        // Création de l'élément <video>
+        let video = document.createElement("video");
+        video.id = "background-video";
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true; // Pour éviter le mode plein écran sur mobile
+        video.style.position = "fixed";
+        video.style.top = "0";
+        video.style.left = "0";
+        video.style.width = "100%";
+        video.style.height = "100%";
+        video.style.objectFit = "cover";
+        video.style.zIndex = "-1";
+
+        // Ajout de la source vidéo
+        let source = document.createElement("source");
+        source.src = "sound_stuff/phasm.mp4"; // Remplace par ton URL
+        source.type = "video/mp4";
+
+        video.appendChild(source);
+        document.body.appendChild(video);
+
+        console.log("✅ Vidéo ajoutée avec succès !");
+
+    </script>
 </body>
 </html>
